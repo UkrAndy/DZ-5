@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,34 +31,20 @@
         function click(event) {
             const button = event.target
             const screen = document.getElementById('screen')
+            let btnSymb = button.innerText
             switch (true) {
-                case button.innerText >= 0 && button.innerText <= 9:
-                    screen.value += button.innerText
+                case btnSymb >= 0 && btnSymb <= 9:
+                    screen.value += btnSymb
                     break;
-                case button.innerText == '/':
+                case btnSymb == '/' || btnSymb == '*' || btnSymb == '+' || btnSymb == '-':
                     num1 = parseInt(screen.value)
-                    operation = '/'
+                    operation = btnSymb
                     screen.value = ''
                     break;
-                case button.innerText == '*':
-                    operation = '*'
-                    num1 = parseInt(screen.value)
+                case btnSymb == 'c':
                     screen.value = ''
                     break;
-                case button.innerText == '+':
-                    operation = '+'
-                    num1 = parseInt(screen.value)
-                    screen.value = ''
-                    break;
-                case button.innerText == '-':
-                    operation = '-'
-                    num1 = parseInt(screen.value)
-                    screen.value = ''
-                    break;
-                case button.innerText == 'c':
-                    screen.value = ''
-                    break;
-                case button.innerText == '=':
+                case btnSymb == '=':
                     num2 = parseInt(screen.value)
                     screen.value = ''
                     aryfmetOperation(num1, operation, num2)
@@ -73,7 +58,6 @@
         }
     </script>
 </head>
-
 <body>
     <table border="1">
         <thead>
@@ -111,5 +95,4 @@
         </tbody>
     </table>
 </body>
-
 </html>
