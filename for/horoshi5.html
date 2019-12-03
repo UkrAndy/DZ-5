@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Задача посложней. Нарисовать равнобедренный треугольник из символов ^. Высоту выбирает пользователь. Например: высота = 5, на экране
+   ^
+  ^^^
+ ^^^^^
+^^^^^^^ -->
+
+    <script>
+        var height = parseInt(prompt("Введіть висоту трикутника", "5"));
+        var countL = height
+        let countN = 0
+
+        for (let i = 0; i < height; i++) {
+            for (let l = 1; l < countL; l++) {
+                document.write('&nbsp')
+            }
+            countL -= 1
+
+            for (let n = 0; n <= countN; n++) {
+                document.write(`^`)
+            }
+            countN += 2
+            document.write('<br>')
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- Інвестор вклав   тис. грн.. на 20 років
+     під 20% річних. 
+    Визначити за допомогою циклів суму, яку він 
+    одержить (без оподаткування). -->
+
+
+
+<body>
+    <label>
+        Початкова сума:
+        <input id="startSum" type="number" value="11">
+    </label> <br>
+
+    <label>
+        Через 20 років:
+        <input id="finishSum" type="number" value="22">
+    </label> <br>
+
+    <button id="btn">
+        Розрахувати
+    </button> <br>
+
+    <script>
+        document.getElementById("btn").onclick = function () {
+            var startSum = parseInt(document.getElementById("startSum").value)
+
+            for (let i = 0; i < 20; i++) {
+                startSum = startSum * 1.2
+            }
+
+
+            
+            document.getElementById("finishSum").value = startSum
+        }
+    </script>
+
+</body>
+
+</html>

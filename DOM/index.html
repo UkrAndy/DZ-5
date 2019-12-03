@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        const prices = [200, 300, 400, 500, 100000]
+
+        function getTotalSumOfRadioGroup(groupName) {
+            let sum = 0
+            const inputs = document.getElementsByName(groupName)
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) {
+                    sum += parseFloat(inputs[i].value)
+                }
+            }
+            return sum
+        }
+        function getTotal() {
+            const citySelect = document.getElementById('hotelCity')
+            const cityNumb = parseInt(citySelect.value)
+            let totalSum = prices[cityNumb]
+
+            const badPrice = getTotalSumOfRadioGroup('rb')
+            totalSum += badPrice
+
+            const breakfastInp = document.getElementById('breakfast')
+            if (breakfastInp.checked)
+                totalSum += parseInt(breakfastInp.value)
+
+            const lunchInp = document.getElementById('lunch')
+            if (lunchInp.checked)
+                totalSum += parseInt(lunchInp.value)
+
+            const dinnerInp = document.getElementById('breakfast')
+            if (dinnerInp.checked)
+                totalSum += parseInt(dinnerInp.value)
+
+            const bingeInp = document.getElementById('breakfast')
+            if (bingeInp.checked)
+                totalSum += parseInt(bingeInp.value)
+
+            const days = document.getElementById('days')
+            totalSum *= parseInt(days.value)
+
+            document.getElementById('total').innerText = totalSum
+        }
+        window.onload = function () {
+            document.getElementById('total').innerText = ''
+            document.getElementById('btn').onclick = getTotal
+        }
+
+    </script>
+</head>
+
+<body>
+    <p>
+        <label> Бронювання готельного номеру
+            <select id="hotelCity">
+                <option value="0">Коломия</option>
+                <option value="1">Тячево</option>
+                <option value="2">Сільце</option>
+                <option value="3">Підгородці</option>
+                <option value="4">Сатурн</option>
+            </select>
+
+        </label>
+    </p>
+    <p>
+        <label> Кількість днів
+            <input type="number" name="" id="days" value="3">
+        </label>
+    </p>
+    <hr>
+    Ліжко:<br>
+    <label>
+        Односпальне
+        <input type="radio" name="rb" value="500">
+    </label>
+    <label>
+        Двоспальне
+        <input type="radio" name="rb" value="1000">
+    </label>
+    <label>
+        Дякую, я постою
+        <input type="radio" name="rb" value="10">
+    </label>
+    <hr>
+    Харчування <br>
+    <label>
+        Сніданок
+        <input type="checkbox" name="" id="breakfast" value="50">
+    </label>
+
+    <label>
+        Обід
+        <input type="checkbox" name="" id="lunch" value="70">
+    </label>
+
+    <label>
+        Вечеря
+        <input type="checkbox" name="" id="dinner" value="100">
+    </label>
+
+    <label>
+        100 грам
+        <input type="checkbox" name="" id="binge" value="100">
+    </label>
+    <br>
+    <br>
+    <br>
+    <button id='btn'>Розрахувати</button>
+    <p>
+        Повна вартість: <span id="total"></span>
+    </p>
+
+
+</body>
+
+</html>

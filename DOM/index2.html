@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //Функція для створення одного рядка таблиці
+        function createTr(rowNum) {
+            //Створюємо порожній рядок
+            const tr=document.createElement('tr')
+
+            //Створюємо першу клітинку у рядку
+            const td=document.createElement('td') //Порожня клітинка
+            td.innerText=`Mark ${rowNum}` //Додаємо у клітинку текст
+            tr.appendChild(td) //Вставляємо клітинку у рядок
+
+            //Створюємо другу клітинку
+            const td2=document.createElement('td') //Порожня клітинку
+            const inp=document.createElement('input') //Створюємо input
+            inp.type='number'  //Задаємо тип input
+            td2.appendChild(inp)  //Додаємо input у клітинку
+            tr.appendChild(td2)   //Додаємо клітинку у рядок
+            return tr //Повертаємо заповнений клітинками рядок
+        }
+
+        //Функція, яку ми прив"язуємо до події зміни кількості оцінок
+        function  onMarksCountChange() {
+            // Знаходимо адресу marksCount (input з кількістю оцінок)
+            const marksCountInp=document.getElementById('marksCount')
+            const marksCount=parseInt(marksCountInp.value) //Зчитуємо кількість оцінок
+
+            const container=document.getElementById('container') //Знаходимо адресу контейнера, де треба вставляти рядки
+            container.innerHTML='' //Очищаємо контейнер (видаляємо усі рядки)
+            for (let i = 0; i < marksCount; i++) { //У циклі створюємо і додаємо вказану кількість рядків 
+                const new_tr=createTr(i+1)    //Створюємо новий рядок
+                container.appendChild(new_tr) //Вставляємо новий рядок у таблицю                
+            }
+        }
+
+        //Функція для знаходження середньої оцінки
+        function getAverageMark() {
+            //Знаходимо container (де знаходяться рядки таблиці)
+            const container= document.getElementById('container')
+
+            //Виберемо усі input з container
+            const inputs=container.getElementsByTagName('input')
+
+            //Знаходимо суму оцінок
+            let sum=0
+            for (let i = 0; i < inputs.length; i++) {
+                sum+=parseInt(inputs[i].value)                
+            }
+            
+            //Знайдемо середнє значення
+            const avg=sum/inputs.length
+            return avg
+        }
+
+        //Функція, яка викликається при натисненні на кнопку
+        function onAvgClick() {
+            const avg=getAverageMark() //Обчислення середньої оцінки
+            document.getElementById('avgMark').innerText=avg //Виведення середньої оцінки в span
+        }
+        window.onload=function(){   //Викличеться після завершення завантаження сторінки
+            document.getElementById('marksCount').onchange=onMarksCountChange
+            document.getElementById('btn').onclick=onAvgClick
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+        <label>
+            Кількість оцінок
+            <input type="number" id="marksCount"  value="2" >
+        </label>
+        <table border="2px">
+            <thead>
+                <tr>
+                    <th>Назва предмета</th>
+                    <th>Оцінка</th>
+                 </tr>
+            </thead>
+            <tbody id="container">
+                <tr>
+                    <td>Mark 1</td>
+                    <td>
+                        <input type="number" name="" id="">
+                    </td>
+                </tr>
+                <tr>
+                        <td>Mark 2</td>
+                        <td>
+                            <input type="number" name="" id="">
+                        </td>
+                    </tr>                
+            </tbody>
+        </table>
+        <hr>
+        <button id="btn">
+            Знайти середній бал
+        </button>
+        <p>
+            Середній бал: <span id="avgMark"> </span>
+        </p>
+
+    </p>
+</body>
+
+</html>
+

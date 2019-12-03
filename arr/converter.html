@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- Конвертор валют. Можна вводити валюту у любу комірку -->
+
+<body>
+    <h4>Введіть сумму валюти</h3>
+        <label>
+            Сумма в гривнях
+            <input type="text" name="" id="hrnId" value="0">
+        </label>
+        <br>
+        <label>
+            Сумма в євро
+            <input type="text" name="" id="eurId" value="0">
+        </label>
+        <br>
+
+        <label>
+            Сумма в долларах
+            <input type="text" name="" id="usdId" value="0">
+        </label>
+        <br><br>
+
+        <button id="conwertBtn">Конвертувати</button>
+        <input type="button" value="Очистити" onclick="resetBtnClic()">
+
+        <script>
+            function conwertBtnClic() {
+                const hrnId = document.getElementById('hrnId')
+                let hrn = parseInt(hrnId.value)
+                const eurId = document.getElementById('eurId')
+                let eur = parseInt(eurId.value)
+                const usdId = document.getElementById('usdId')
+                let usd = parseInt(usdId.value)
+
+                if (hrn != 0) {
+                    let eur = (hrn / 27).toFixed(2)
+                    let usd = (hrn / 24).toFixed(2)
+                    eurId.value = eur
+                    usdId.value = usd
+                }
+                if (eur != 0) {
+                    let hrn = (eur * 27).toFixed(2)
+                    let usd = (eur * 1.1).toFixed(2)
+                    hrnId.value = hrn
+                    usdId.value = usd
+                }
+                if (usd != 0) {
+                    let hrn = (usd * 24).toFixed(2)
+                    let eur = (usd * 0.9).toFixed(2)
+                    eurId.value = eur
+                    hrnId.value = hrn
+                }
+            }
+
+            function resetBtnClic() {
+                const hrnId = document.getElementById('hrnId')
+                hrnId.value = 0
+                const eurId = document.getElementById('eurId')
+                eurId.value = 0
+                const usdId = document.getElementById('usdId')
+                usdId.value = 0
+            }
+
+            const btnConwert = document.getElementById('conwertBtn')
+            btnConwert.onclick = conwertBtnClic
+            
+        </script>
+
+
+</body>
+
+</html>

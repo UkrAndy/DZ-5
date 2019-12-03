@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=i.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- 2.1. Відобразити трикутник за допомогою символів «о»
+       о
+      оо
+     ооо
+    оооо
+   ооооо
+  оооооо
+ ооооооо -->
+
+<body>
+    <script>
+        let countSpace = 6
+        for (let i = 0; i < 7; i++) {
+            for (let l = countSpace; l > 0; l--) {
+                document.write('&nbsp')
+            }
+            countSpace -= 1
+            for (let n = 0; n <= i; n++) {
+                document.write('o')
+            }
+            document.write('<br>')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+        //----- Функція для створення одного рядка
+        //function   назва    ( що треба знати )
+        function createRow(rowNumber, href, title) {
+            //---- Створюємо  рядок
+            document.write('<tr>')
+            //--- Перша клітинка
+            document.write(`<td>${rowNumber}</td>`)
+            //--- Друга клітинка
+            document.write('<td>')
+            document.write(`<a href=${href}>${title}</a>`)
+            document.write('</td>')
+            document.write('</tr>')
+        }
+        //------ Функція для створення таблиці з посиланням
+        function createLinksTable(
+            href1, title1,
+            href2, title2,
+            href3, title3) {
+            document.write('<table>')
+            //---- Створюємо перший рядок
+            createRow(1, href1, title1)
+            //---- Створюємо другий рядок
+            createRow(2, href2, title2)
+            //---- Створюємо третій рядок
+            createRow(3, href3, title3)
+            document.write('</table>')
+        }
+        //========= Використовуємо функцію
+        createLinksTable("https://www.ukr.net/", 'Ukrnet',
+            "https://www.google.com/webhp?hl=ru&sa=X&ved=0ahUKEwiE1cGZjofiAhUNqYsKHcoMC9kQPAgH", 'Google',
+            "https://www.ukr.net/", 'Any')
+        //=====================  ФОРМУВАННЯ НУМЕРОВАНОГО СПИСКУ З ПОСИЛАННЯМИ ========    
+        /// <summary>
+        /// Функція, для формування одного пункту списку
+        /// </summary>
+        /// <param name="href">Посилання, що вставляється у пункт списку</param>
+        /// <param name="title">Текстова мітка</param>     
+        function createListItem(href, title) {
+            document.write(`
+          <li>
+             <a href=${href}>${title}</a>
+          </li>
+        `)
+        }
+        //--- Функція для формування нумерованого списку посилань
+        function createLinksList(
+            href1, title1,
+            href2, title2,
+            href3, title3) {
+            document.write('<ol>')
+            //--- Вставляємо перший пункт списку
+            createListItem(href1, title1)
+            //--- Вставляємо другий пункт списку
+            createListItem(href2, title2)
+            //--- Вставляємо третій пункт списку
+            createListItem(href3, title3)
+            document.write('</ol>')
+        }
+        //--- Використовуємо функцію для формування нумерованго списку посилань
+
+        createLinksList(
+            "https://www.ukr.net/", 'Ukrnet',
+            "https://www.google.com/webhp?hl=ru&sa=X&ved=0ahUKEwiE1cGZjofiAhUNqYsKHcoMC9kQPAgH", 'Google',
+            "https://www.ukr.net/", 'Any')
+    </script>
+    <style>
+        table,
+        td {
+            border: 2px solid black
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+

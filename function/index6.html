@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- Задача 6. Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців -->
+
+<body>
+
+    <script>
+        rows = parseInt(prompt("Введіть кільсість рядочків"))
+        columns = parseInt(prompt("Введіть кільсість стовпчиків"))
+
+        function tableFun(rows, columns) {
+            document.write('<table border=1>')
+            for (let r = 0; r < rows; r++) {
+                document.write('<tr>')
+                for (let d = 0; d < columns; d++) {
+                    document.write('<td>комірка</td>')
+                }
+                document.write('</tr>')
+            }
+            document.write('</table>')
+        }
+        tableFun(rows, columns)
+
+    </script>
+
+</body>
+
+</html>
