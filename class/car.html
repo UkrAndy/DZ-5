@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        function Car(model, tankVolume, liters, passengerVolume, passengers) {
+            this.model = model,
+            this.tankVolume = parseFloat(tankVolume)
+            this.liters = parseFloat(liters)
+            this.passengerVolume = parseFloat(passengerVolume)
+            this.passengers = parseFloat(passengers)
+        }
+
+        Car.prototype.benzineAdd = function (litersAdd) {
+            if ((this.tankVolume - this.liters) >= litersAdd) {
+                this.liters += litersAdd
+                return true
+            }
+            else
+                return false
+        }
+
+        Car.prototype.passengerAdd = function (passengerAdd) {
+            if ((this.passengerVolume - this.passengers) >= passengerAdd) {
+                this.passengers += passengerAdd
+                return true
+            }
+            else
+                return false
+        }
+
+        Car.prototype.passengerOut = function (passengerOut) {
+            this.passengers -= passengerOut
+        }
+
+        Car.prototype.toString = function () {
+            return `passengers=${this.passengers}`
+        }
+
+
+        const car1 = new Car('Shkoda', 5000, 10, 5, 1)
+        document.write(car1 + '<br>')
+        car1.passengerAdd(4)
+        document.write(car1 + '<br>')
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
