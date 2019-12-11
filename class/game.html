@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        class Game {
+            constructor(min = 1, max = 10) {
+                this.scoreUser1 = 0
+                this.scoreUser2 = 0
+                this.min = min
+                this.max = max
+            }
+
+
+            onClicCheck() {
+                const numbUser1 = parseInt(this.numbUser1)
+                const numbUser2 = parseInt(this.numbUser2)
+                const numbComp = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+                if (Math.abs(numbUser1 - numbComp) < Math.abs(numbUser2 - numbComp)) {
+                    this.scoreUser1++
+                } else {
+                    this.scoreUser2++
+                } 
+                this.scoreSpanUser1.innerText = this.scoreUser1
+                this.scoreSpanUser2.innerText = this.scoreUser2
+
+                this.numbComp.innerText = numbComp
+                // document.write(`${this.scoreUser1} ${this.scoreUser2} ${numbComp}`)
+            }
+
+
+            render() {
+                const div = document.createElement('div')
+
+                let lbl = document.createElement('label')
+                lbl.innerText = 'User1: '
+                div.appendChild(lbl)
+                this.answerInputUser1 = document.createElement('input')
+                this.answerInputUser1.value = '0'
+                div.appendChild(this.answerInputUser1)
+
+                lbl = document.createElement('label')
+                lbl.innerText = 'User2: '
+                div.appendChild(lbl)
+                this.answerInputUser2 = document.createElement('input')
+                this.answerInputUser2.value = '0'
+                div.appendChild(this.answerInputUser2)
+
+                let btn = document.createElement('button')
+                btn.innerText = 'Go'
+                btn.onclick = this.onClicCheck.bind(this)
+                div.appendChild(btn)
+
+                let div2 = document.createElement('div')
+
+                lbl = document.createElement('label')
+                lbl.innerText = 'Comp numb: '
+                div2.appendChild(lbl)
+                this.numbComp = document.createElement('span')
+                this.numbComp.innerText = '0'
+                div2.appendChild(this.numbComp)
+                div2.appendChild(document.createElement('br'))
+
+                lbl = document.createElement('label')
+                lbl.innerText = 'User1 score: '
+                this.scoreSpanUser1 = document.createElement('span')
+                lbl.appendChild(this.scoreSpanUser1)
+                div2.appendChild(lbl)
+                div2.appendChild(document.createElement('br'))
+
+                lbl = document.createElement('label')
+                lbl.innerText = 'User2 score: '
+                this.scoreSpanUser2 = document.createElement('span')
+                lbl.appendChild(this.scoreSpanUser2)
+                div2.appendChild(lbl)
+
+                div.appendChild(div2)
+
+                return div
+            }
+
+
+
+        }
+
+
+  
+        window.onload = function () {
+            const game = new Game()
+            document.getElementById('conteiner').appendChild(game.render())
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <div id='conteiner'></div>
+
+</body>
+
+</html>
