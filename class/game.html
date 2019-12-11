@@ -9,26 +9,30 @@
     <script>
         class Game {
             constructor(min = 1, max = 10) {
-                this.scoreUser1 = 0
-                this.scoreUser2 = 0
                 this.min = min
                 this.max = max
+                this.scoreUser1 = 0
+                this.scoreUser2 = 0
+               
             }
 
 
-            onClicCheck() {
-                const numbUser1 = parseInt(this.numbUser1)
-                const numbUser2 = parseInt(this.numbUser2)
-                const numbComp = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+            onClicCheck = () => {
+                let numbUser1 = parseInt(this.answerInputUser1.value)
+                let numbUser2 = parseInt(this.answerInputUser2.value)
+                let numbComp = Math.floor(this.min + Math.random() * (this.max - this.min + 1))
+                this.numbComp.innerText = numbComp
+               
                 if (Math.abs(numbUser1 - numbComp) < Math.abs(numbUser2 - numbComp)) {
                     this.scoreUser1++
-                } else {
+                }
+                else {
                     this.scoreUser2++
-                } 
+                }
+
                 this.scoreSpanUser1.innerText = this.scoreUser1
                 this.scoreSpanUser2.innerText = this.scoreUser2
 
-                this.numbComp.innerText = numbComp
                 // document.write(`${this.scoreUser1} ${this.scoreUser2} ${numbComp}`)
             }
 
@@ -52,7 +56,7 @@
 
                 let btn = document.createElement('button')
                 btn.innerText = 'Go'
-                btn.onclick = this.onClicCheck.bind(this)
+                btn.onclick = this.onClicCheck
                 div.appendChild(btn)
 
                 let div2 = document.createElement('div')
@@ -88,9 +92,9 @@
         }
 
 
-  
+
         window.onload = function () {
-            const game = new Game()
+            const game = new Game(1,10)
             document.getElementById('conteiner').appendChild(game.render())
         }
 
