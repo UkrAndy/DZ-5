@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Поля	
+    Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+    Кількість правильних відповідей
+    Кількість неправильних відповідей
+
+    Методи
+    Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+    Перевірка правильності вказаної відповіді
+    render -->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        class MultChecker {
+            constructor() {
+                this.rightAnswersCount = 0
+                this.wrongAnswersCount = 0
+            }
+
+            onClickCheck() {
+                const firstNum = parseInt(this.inputFirstNumb.value)
+                const secondNum = parseInt(this.spanSecondNumb.innerText)
+                const userSum = parseInt(this.resNumb.value)
+
+                if (firstNum * secondNum == userSum)
+                    this.rightAnswersCount++
+                else
+                    this.wrongAnswersCount++
+
+                this.rightAnswersSpan.innerText = this.rightAnswersCount
+                this.wrongAnswersSpan.innerText = this.wrongAnswersCount
+                this.answerSpan.innerText = `${firstNum}*${secondNum}=${firstNum * secondNum}`
+                this.spanSecondNumb.innerText = this.rendomSecondNum()
+                this.resNumb.value = '0'
+            }
+
+            rendomSecondNum() {
+                return Math.round(1 + Math.random() * 9)
+            }
+
+            render() {
+                const div = document.createElement('div')
+
+                let lbl = document.createElement('label')
+                lbl.innerText = 'Помножте: '
+                this.inputFirstNumb = document.createElement('input')
+                this.inputFirstNumb.value = '7'
+                this.inputFirstNumb.type = 'number'
+                lbl.appendChild(this.inputFirstNumb)
+                div.appendChild(lbl)
+
+                lbl = document.createElement('label')
+                lbl.innerText = '*'
+                this.spanSecondNumb = document.createElement('span')
+                this.spanSecondNumb.innerText = this.rendomSecondNum()
+                lbl.appendChild(this.spanSecondNumb)
+                div.appendChild(lbl)
+
+                lbl = document.createElement('label')
+                lbl.innerText = '='
+                this.resNumb = document.createElement('input')
+                this.resNumb.value = '0'
+                lbl.appendChild(this.resNumb)
+                div.appendChild(lbl)
+
+                let btn = document.createElement('button')
+                btn.innerText = 'Перевірити'
+                btn.onclick = this.onClickCheck.bind(this)
+                div.appendChild(document.createElement('br'))
+                div.appendChild(btn)
+
+                div.appendChild(document.createElement('br'))
+                lbl = document.createElement('label')
+                lbl.innerText = 'Правильних відповідей: '
+                this.rightAnswersSpan = document.createElement('span')
+                lbl.appendChild(this.rightAnswersSpan)
+                div.appendChild(lbl)
+
+                div.appendChild(document.createElement('br'))
+                lbl = document.createElement('label')
+                lbl.innerText = 'Неправильних відповідей: '
+                this.wrongAnswersSpan = document.createElement('span')
+                lbl.appendChild(this.wrongAnswersSpan)
+                div.appendChild(lbl)
+
+                div.appendChild(document.createElement('br'))
+                div.appendChild(document.createElement('br'))
+
+                lbl = document.createElement('label')
+                lbl.innerText = 'Рішення: '
+                this.answerSpan = document.createElement('span')
+                lbl.appendChild(this.answerSpan)
+                div.appendChild(lbl)
+
+                return div
+            }
+
+        }
+
+
+
+
+        window.onload = function () {
+            const multChecker = new MultChecker()
+            document.getElementById('conteiner').appendChild(multChecker.render())
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="conteiner"></div>
+</body>
+
+</html>
