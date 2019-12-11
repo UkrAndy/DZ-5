@@ -4,13 +4,10 @@
     Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
     Кількість правильних відповідей
     Кількість неправильних відповідей
-
     Методи
     Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
     Перевірка правильності вказаної відповіді
     render -->
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,12 +25,10 @@
                 const firstNum = parseInt(this.inputFirstNumb.value)
                 const secondNum = parseInt(this.spanSecondNumb.innerText)
                 const userSum = parseInt(this.resNumb.value)
-
                 if (firstNum * secondNum == userSum)
                     this.rightAnswersCount++
                 else
                     this.wrongAnswersCount++
-
                 this.rightAnswersSpan.innerText = this.rightAnswersCount
                 this.wrongAnswersSpan.innerText = this.wrongAnswersCount
                 this.answerSpan.innerText = `${firstNum}*${secondNum}=${firstNum * secondNum}`
@@ -44,7 +39,6 @@
             rendomSecondNum() {
                 return Math.round(1 + Math.random() * 9)
             }
-
             render() {
                 const div = document.createElement('div')
 
@@ -103,9 +97,6 @@
             }
 
         }
-
-
-
 
         window.onload = function () {
             const multChecker = new MultChecker()
