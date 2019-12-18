@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        class AddGame {
+            constructor(min = 1, max = 10) {
+                this.min = min
+                this.max = max
+                this.userScores1 = 0
+                this.userScores2 = 0
+            }
+            getRandom = () => {
+                return Math.floor(this.min + Math.random() * (this.max - this.min + 1))
+            }
+            onCheckClick = () => {
+                let userNum1 = parseInt(this.user1Input.value)
+                let userNum2 = parseInt(this.user2Input.value)
+                let computerNum = this.getRandom()
+                this.computerNumSpan.innerText = computerNum
+                
+                if (Math.abs(userNum1 - computerNum) < Math.abs(userNum2 - computerNum)) {
+                    this.userScores1++
+                }
+                else {
+                    this.userScores2++
+                }
+
+                this.user1ScoreSpan.innerText = this.userScores1
+                this.user2ScoreSpan.innerText = this.userScores2
+            }
+            render() {
+                let div = document.createElement('div')
+                let a = document.createElement('label')
+                a.innerText = 'user1'
+                this.user1Input = document.createElement('input')
+                a.appendChild(this.user1Input)
+                div.appendChild(a)
+                a = document.createElement('label')
+                a.innerText = 'user2'
+                this.user2Input = document.createElement('input')
+                a.appendChild(this.user2Input)
+                div.appendChild(a)
+                const btn = document.createElement('button')
+                btn.innerText = 'Go'
+                btn.onclick = this.onCheckClick
+                div.appendChild(btn)
+                ///---
+                let div2 = document.createElement('div')
+                div2.innerText = 'computerNum'
+                this.computerNumSpan = document.createElement('span')
+                div2.appendChild(this.computerNumSpan)
+                div.appendChild(div2)
+                ///---
+                div2 = document.createElement('div')
+                div2.innerText = 'user1Score'
+                this.user1ScoreSpan = document.createElement('span')
+                div2.appendChild(this.user1ScoreSpan)
+                div.appendChild(div2)
+                ///---
+                div2 = document.createElement('div')
+                div2.innerText = 'user2Score'
+                this.user2ScoreSpan = document.createElement('span')
+                div2.appendChild(this.user2ScoreSpan)
+                div.appendChild(div2)
+                return div
+            }
+
+
+        }
+        window.onload = function () {
+            const game = new AddGame(2, 9)
+            document.getElementById('conteiner').appendChild(game.render())
+        }
+    </script>
+</head>
+
+<body>
+    <div id="conteiner"></div>
+</body>
+
+</html>

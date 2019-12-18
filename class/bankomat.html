@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+
+        class TBankomat {
+            constructor() {
+                this.getSum = 0
+                this.nominalArr = [200, 100, 50, 20, 10, 5]
+                this.amountArr = [4, 7, 10, 20, 40, 75]
+                this.getBankNoteArr = []
+            }
+
+            amountInATM = (arr1) => {
+                let sum = 0
+                let arr = arr1
+                for (let i = 0; i < arr.length; i++) {
+                    sum += this.nominalArr[i] * arr[i]
+                }
+                return sum
+            }
+
+            chekMoney = (bankNote1, amountBankNote1) => {
+                let bankNote = bankNote1
+                let amountBankNote = amountBankNote1
+                let howMuchBankNoteGet = Math.floor(this.getSum / bankNote)
+
+                if (howMuchBankNoteGet > 0 && amountBankNote > 0) {
+                    this.getSum -= howMuchBankNoteGet * bankNote
+                    return howMuchBankNoteGet
+                }
+                else
+                    return 0
+            }
+
+            getMoney = () => {
+                this.getSum = parseInt(this.userAmount.value)
+                if (this.amountInATM(this.amountArr) >= this.getSum) {
+                    for (let i = 0; i < this.nominalArr.length; i++) {
+                        this.getBankNoteArr[i] = this.chekMoney(this.nominalArr[i], this.amountArr[i])
+                        this.amountArr[i] -= this.getBankNoteArr[i]
+                    }
+                    this.getNoteArr.innerText = this.amountInATM(this.getBankNoteArr)
+                    this.leftNoteArr.innerText = this.amountInATM(this.amountArr)
+                }
+                else
+                    this.getNoteArr.innerText = 'Такої кількості немає у банкоматі'
+                this.leftNoteArr.innerText = this.amountInATM(this.amountArr)
+            }
+
+            render() {
+                const div = document.createElement('div')
+                let lbl = document.createElement('label')
+                lbl.innerText = 'Введіть суму: '
+                div.appendChild(lbl)
+                div.appendChild(document.createElement('br'))
+
+                this.userAmount = document.createElement('input')
+                this.userAmount.value = '0'
+                div.appendChild(this.userAmount)
+
+                const btn = document.createElement('button')
+                btn.innerText = 'Get money'
+                btn.onclick = this.getMoney
+                div.appendChild(btn)
+                div.appendChild(document.createElement('br'))
+                div.appendChild(document.createElement('br'))
+
+                lbl = document.createElement('label')
+                lbl.innerText = 'Ось ваші гроші: '
+                div.appendChild(lbl)
+
+                this.getNoteArr = document.createElement('span')
+                div.appendChild(this.getNoteArr)
+                div.appendChild(document.createElement('br'))
+                lbl = document.createElement('label')
+                lbl.innerText = 'У банкоматі залишилось: '
+                div.appendChild(lbl)
+
+                this.leftNoteArr = document.createElement('span')
+                div.appendChild(this.leftNoteArr)
+                return div
+            }
+        }
+
+        window.onload = function () {
+            const bankomat = new TBankomat()
+            document.getElementById('conteiner').appendChild(bankomat.render())
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="conteiner"></div>
+</body>
+
+</html>
