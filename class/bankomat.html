@@ -17,7 +17,7 @@
                 this.getBankNoteArr = []
             }
 
-            amountInATM = (arr1) => {
+            totalAmountMoney = (arr1) => {
                 let sum = 0
                 let arr = arr1
                 for (let i = 0; i < arr.length; i++) {
@@ -41,17 +41,17 @@
 
             getMoney = () => {
                 this.getSum = parseInt(this.userAmount.value)
-                if (this.amountInATM(this.amountArr) >= this.getSum) {
+                if (this.totalAmountMoney(this.amountArr) >= this.getSum) {
                     for (let i = 0; i < this.nominalArr.length; i++) {
                         this.getBankNoteArr[i] = this.chekMoney(this.nominalArr[i], this.amountArr[i])
                         this.amountArr[i] -= this.getBankNoteArr[i]
                     }
-                    this.getNoteArr.innerText = this.amountInATM(this.getBankNoteArr)
-                    this.leftNoteArr.innerText = this.amountInATM(this.amountArr)
+                    this.getNoteArr.innerText = this.totalAmountMoney(this.getBankNoteArr)
+                    this.leftNoteArr.innerText = this.totalAmountMoney(this.amountArr)
                 }
                 else
                     this.getNoteArr.innerText = 'Такої кількості немає у банкоматі'
-                this.leftNoteArr.innerText = this.amountInATM(this.amountArr)
+                this.leftNoteArr.innerText = this.totalAmountMoney(this.amountArr)
             }
 
             render() {
@@ -92,7 +92,6 @@
         window.onload = function () {
             const bankomat = new TBankomat()
             document.getElementById('conteiner').appendChild(bankomat.render())
-
         }
     </script>
 </head>
