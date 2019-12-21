@@ -42,8 +42,8 @@
             getMoney = () => {
                 this.getSum = parseInt(this.userAmount.value)
                 if (this.totalAmountMoney(this.amountArr) >= this.getSum) {
-                    for (let i = 0; i < this.nominalArr.length; i++) {
-                        this.getBankNoteArr[i] = this.chekMoney(this.nominalArr[i], this.amountArr[i])
+                    for (let i = 0; i < this.nominalArr.length; i++) {   Спробуйте спростити 
+                        this.getBankNoteArr[i] = this.chekMoney(this.nominalArr[i], this.amountArr[i]) без виклику додаткової функції
                         this.amountArr[i] -= this.getBankNoteArr[i]
                     }
                     this.getNoteArr.innerText = this.totalAmountMoney(this.getBankNoteArr)
